@@ -109,7 +109,7 @@ public class RobotPlayer
 			robotController.setIndicatorString( 1, "Enemy Soldiers in proximity: " + enemies );
 			robotController.setIndicatorString( 2, "Team Soldiers in proximity: " + allies );
 			
-			if ( Math.random() < MINE_LAYING_PROBABILITY && enemies < 2 ) 
+			if ( Math.random() < MINE_LAYING_PROBABILITY && enemies < 1 && !Behaviour.getIsTimeRunningOut() ) 
 			{
 				// Lay a mine 
 				if( robotController.senseMine( robotController.getLocation() ) == null )
@@ -120,20 +120,20 @@ public class RobotPlayer
 			else
 			{
 				// Half of the time I want new units moving towards the enemy base anyways.
-				if ( enemies > 1 && allies <= 4 )
+				if ( enemies - allies > 2 )
 				{
 					// Fall back until there is a numbers advantage
 					dir = Sensory.getDirectionToHQ( robotController );
 				}
 				// If the game is early, see if we move randomly.
-				else if ( Math.random() < 0.45 && Clock.getRoundNum() < 1000 )
+				else if ( Math.random() < 0.45 && !Behaviour.getIsTimeRunningOut() )
 				{
 					dir = Direction.values()[ ( int )( Math.random()*8 ) ];
 				}
 				else
 				{
 					// If late game, move towards the enemy base.
-					if ( Clock.getRoundNum() >= 1000 )
+					if ( Behaviour.getIsTimeRunningOut() )
 					{
 						if ( Math.random() < 0.025 )
 						{
