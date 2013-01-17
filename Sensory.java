@@ -15,7 +15,7 @@ import battlecode.common.Team;
  */
 public class Sensory 
 {
-	private static final int DEFAULT_ENEMY_DETECTION_RANGE = 15;
+//	private static final int DEFAULT_ENEMY_DETECTION_RANGE = 15;
 	
 	/**
 	 * Returns the number of allied robots in the vicinity.

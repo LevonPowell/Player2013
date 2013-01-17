@@ -120,13 +120,13 @@ public class RobotPlayer
 			else
 			{
 				// Half of the time I want new units moving towards the enemy base anyways.
-				if ( enemies - allies > 2 )
+				if ( enemies - allies > 3 )
 				{
 					// Fall back until there is a numbers advantage
 					dir = Sensory.getDirectionToHQ( robotController );
 				}
 				// If the game is early, see if we move randomly.
-				else if ( Math.random() < 0.45 && !Behaviour.getIsTimeRunningOut() )
+				else if ( Math.random() < MINE_LAYING_PROBABILITY && !Behaviour.getIsTimeRunningOut() )
 				{
 					dir = Direction.values()[ ( int )( Math.random()*8 ) ];
 				}
@@ -135,7 +135,7 @@ public class RobotPlayer
 					// If late game, move towards the enemy base.
 					if ( Behaviour.getIsTimeRunningOut() )
 					{
-						if ( Math.random() < 0.025 )
+						if ( Math.random() < 0.05 )
 						{
 							dir = Direction.values()[ ( int )( Math.random()*8 ) ];
 						}
